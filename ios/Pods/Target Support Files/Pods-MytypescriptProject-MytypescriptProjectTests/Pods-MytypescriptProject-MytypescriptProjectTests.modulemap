@@ -1,0 +1,6 @@
+module Pods_MytypescriptProject_MytypescriptProjectTests {
+  umbrella header "Pods-MytypescriptProject-MytypescriptProjectTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
