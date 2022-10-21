@@ -1,0 +1,1 @@
+../../../FirebaseStorageInternal/FirebaseCore/Extension/FIRHeartbeatInfo.h
