@@ -1,16 +1,14 @@
+import React, { FC, useState } from "react";
 import {
   Alert,
-  Button,
   Dimensions,
   Image,
-  ImageBackground,
   StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
   View,
 } from "react-native";
-import React, { FC, useState } from "react";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
 import Animated, {
   Extrapolate,
@@ -22,10 +20,14 @@ import Animated, {
   withSpring,
   withTiming,
 } from "react-native-reanimated";
+
+// Custom Component
 import colors from "../style/colors";
-import { normalize } from "../validation/globles";
+import { fontFamily, normalize, textSizes } from "../validation/globles";
 import Seprator from "../container/Seprator";
 import AppText from "../container/AppText";
+// Custom Component
+
 import { firebase } from "@react-native-firebase/auth";
 import { NavigatorScreenParams, useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
@@ -102,8 +104,7 @@ const SignUP: FC = (props) => {
           .createUserWithEmailAndPassword(email, password);
         if (user) {
           navigation.navigate("CardsScreen");
-          // await firebase.firestore().collection("user").doc(user.uid).set({name, email, password})
-          Alert.alert(JSON.stringify(user));
+          // Alert.alert(JSON.stringify(user));
         }
       } catch (error) {
         console.log("error is here", error);
@@ -115,9 +116,26 @@ const SignUP: FC = (props) => {
   return (
     <>
       <Animated.View
-        style={[backgroundScreenStyle, { flex: 1, justifyContent: "center" }]}
+        style={[
+          backgroundScreenStyle,
+          {
+            flex: 1,
+            justifyContent: "center",
+            paddingTop: normalize(20),
+          },
+        ]}
       >
-        <AppText style={{ color: colors.dark }}> Login Please</AppText>
+        <AppText
+          style={{
+            color: colors.light,
+            textAlign: "center",
+            fontSize: textSizes.h4,
+            fontWeight: "900",
+            marginTop: normalize(30),
+          }}
+        >
+          Register You Details Please
+        </AppText>
         <Image
           source={require("../assets/user.png")}
           style={{ alignSelf: "center" }}

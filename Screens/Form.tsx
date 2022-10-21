@@ -12,13 +12,15 @@ import {
 } from "react-native";
 import React, { useState, useEffect } from "react";
 
+// Custom Component
 import colors from "../style/colors";
 import { normalize } from "../validation/globles";
 import Seprator from "../container/Seprator";
-import { NavigatorScreenParams, useNavigation } from "@react-navigation/native";
 import AppText from "../container/AppText";
+// Custom Component
+
+import { useNavigation } from "@react-navigation/native";
 import { firebase } from "@react-native-firebase/auth";
-import auth from "@react-native-firebase/auth";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamList } from "./RootStackPrams";
 

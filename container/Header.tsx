@@ -7,11 +7,14 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { RootStackParamList } from "../Screens/RootStackPrams";
-import { useNavigation } from "@react-navigation/native";
+//Custom Component
 import colors from "../style/colors";
 import { normalize } from "../validation/globles";
 import AppText from "./AppText";
+//Custom Component
+import auth from "@react-native-firebase/auth";
+import { RootStackParamList } from "../Screens/RootStackPrams";
+import { useNavigation } from "@react-navigation/native";
 
 interface Props {
   children?: React.ReactNode;
@@ -22,6 +25,11 @@ interface Props {
 type authScreenProp = StackNavigationProp<RootStackParamList, "CardsScreen">;
 const Header: React.FC<Props> = ({ children, title, screen }) => {
   const navigation = useNavigation<authScreenProp>();
+  const handleLogout = () => {
+    auth()
+      .signOut()
+      .then(() => console.log("User signed out!"));
+  };
   return (
     <View style={styles.headerContainer}>
       {screen == true ? (
@@ -31,7 +39,14 @@ const Header: React.FC<Props> = ({ children, title, screen }) => {
             style={{ height: 30, width: 30 }}
           />
         </TouchableOpacity>
-      ) : null}
+      ) : (
+        <TouchableOpacity onPress={handleLogout}>
+          <Image
+            source={require("../assets/logout.webp")}
+            style={{ height: 30, width: 30 }}
+          />
+        </TouchableOpacity>
+      )}
       <View
         style={{
           width: screen == false ? "85%" : "80%",

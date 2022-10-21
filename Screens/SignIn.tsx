@@ -1,4 +1,4 @@
-import { Dimensions, StyleSheet, View } from "react-native";
+import { Dimensions, Image, StyleSheet, View } from "react-native";
 import React from "react";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
 import Animated, {
@@ -13,6 +13,8 @@ import Animated, {
 } from "react-native-reanimated";
 import colors from "../style/colors";
 import Form from "./Form";
+import { normalize, textSizes } from "../validation/globles";
+import AppText from "../container/AppText";
 
 const { height: SCREEN_HEIGHT } = Dimensions.get("window");
 
@@ -75,8 +77,28 @@ const SignIn = () => {
   return (
     <>
       <Animated.View
-        style={[backgroundScreenStyle, { flex: 1 }]}
-      ></Animated.View>
+        style={[
+          backgroundScreenStyle,
+          { flex: 1, justifyContent: "center", paddingTop: normalize(20) },
+        ]}
+      >
+        <View style={{ marginTop: normalize(30), padding: normalize(10) }}>
+          <AppText
+            style={{
+              color: colors.light,
+              textAlign: "center",
+              fontSize: textSizes.h4,
+              fontWeight: "900",
+            }}
+          >
+            Login With your Details Please
+          </AppText>
+        </View>
+        <Image
+          source={require("../assets/user.png")}
+          style={{ alignSelf: "center" }}
+        />
+      </Animated.View>
       <GestureDetector gesture={gesture}>
         <Animated.View style={[styles.container, rBottomSheetStyle]}>
           <View style={styles.line} />

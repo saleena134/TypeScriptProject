@@ -1,14 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {
-  View,
-  FlatList,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  ScrollView,
-  SafeAreaView,
-  Button,
-} from "react-native";
+import { View, FlatList, StyleSheet } from "react-native";
 import Header from "../../container/Header";
 import Screen from "../../container/Screen";
 import Cards from "./Cards";
@@ -70,16 +61,10 @@ const CardsScreen: React.FC = ({ ...props }) => {
 
   const image = { uri: "https://picsum.photos/200/300" };
 
-  const handleLogout = () => {
-    auth()
-      .signOut()
-      .then(() => console.log("User signed out!"));
-  };
   return (
     <Screen>
       <Header title={"Card Screen"} screen={false} />
       <View style={styles.container}>
-        <Button title="logout" onPress={handleLogout} />
         <FlatList
           data={data}
           keyExtractor={(item, index) => "id" + index.toString()}
