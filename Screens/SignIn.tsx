@@ -1,14 +1,4 @@
-import {
-  Button,
-  Dimensions,
-  Image,
-  ImageBackground,
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { Dimensions, StyleSheet, View } from "react-native";
 import React from "react";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
 import Animated, {
@@ -22,14 +12,11 @@ import Animated, {
   withTiming,
 } from "react-native-reanimated";
 import colors from "../style/colors";
-import { normalize } from "../validation/globles";
-import Seprator from "../container/Seprator";
-import AppText from "../container/AppText";
-import LogIn from "./Form";
+import Form from "./Form";
 
 const { height: SCREEN_HEIGHT } = Dimensions.get("window");
 
-const BottomSheet = () => {
+const SignIn = () => {
   React.useEffect(() => {
     translateY.value = withSpring(-SCREEN_HEIGHT / 3, { damping: 50 });
   }, []);
@@ -93,7 +80,7 @@ const BottomSheet = () => {
       <GestureDetector gesture={gesture}>
         <Animated.View style={[styles.container, rBottomSheetStyle]}>
           <View style={styles.line} />
-          <LogIn />
+          <Form />
         </Animated.View>
       </GestureDetector>
     </>
@@ -118,4 +105,4 @@ const styles = StyleSheet.create({
     alignSelf: "center",
   },
 });
-export default BottomSheet;
+export default SignIn;

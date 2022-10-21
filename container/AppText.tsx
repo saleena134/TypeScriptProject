@@ -4,8 +4,8 @@ import colors from "../style/colors";
 import { normalize } from "../validation/globles";
 
 interface Props {
-  children: string;
-  style: React.CSSProperties;
+  children?: React.ReactNode;
+  style: any;
 }
 const AppText: React.FC<Props> = ({ children, style, ...rest }) => {
   return <Text style={[styles.text, style]}>{children}</Text>;

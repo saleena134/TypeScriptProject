@@ -28,14 +28,17 @@ import Seprator from "../container/Seprator";
 import AppText from "../container/AppText";
 import { firebase } from "@react-native-firebase/auth";
 import { NavigatorScreenParams, useNavigation } from "@react-navigation/native";
+import { StackNavigationProp } from "@react-navigation/stack";
+import { RootStackParamList } from "./RootStackPrams";
 
 const { height: SCREEN_HEIGHT } = Dimensions.get("window");
+type authScreenProp = StackNavigationProp<RootStackParamList, "SignIn">;
 
 const SignUP: FC = (props) => {
   React.useEffect(() => {
     translateY.value = withSpring(-SCREEN_HEIGHT / 3, { damping: 50 });
   }, []);
-
+  const navigation = useNavigation<authScreenProp>();
   const translateY = useSharedValue(0);
 
   const context = useSharedValue({ y: 0 });
@@ -90,7 +93,7 @@ const SignUP: FC = (props) => {
   const [email, setEmail] = useState<string | null>(null);
   const [name, setName] = useState<string | null>(null);
   const [password, setPassword] = useState<string | null>(null);
-  const navigation = useNavigation();
+
   const signup = async () => {
     if (name && email && password) {
       try {
@@ -114,7 +117,7 @@ const SignUP: FC = (props) => {
       <Animated.View
         style={[backgroundScreenStyle, { flex: 1, justifyContent: "center" }]}
       >
-        <AppText> Login Please</AppText>
+        <AppText style={{ color: colors.dark }}> Login Please</AppText>
         <Image
           source={require("../assets/user.png")}
           style={{ alignSelf: "center" }}
@@ -161,7 +164,7 @@ const SignUP: FC = (props) => {
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.button}
-              onPress={() => navigation.navigate("BottomSheet")}
+              onPress={() => navigation.navigate("SignIn")}
             >
               <Text style={{ color: colors.light }}>Back To login</Text>
             </TouchableOpacity>
