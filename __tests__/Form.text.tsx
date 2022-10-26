@@ -8,9 +8,7 @@ import Form from "../Screens/Form";
 // });
 
 describe("<Form/>", () => {
-  test("should display a blank login form, with remember me checked by default", async () => {
-    // ???
-  });
+  test("Its Working", async () => {});
 });
 
 const mockedFirebaseAuthSignInWithCustomToken = jest.fn();
