@@ -4,4 +4,5 @@ export default {
   primary: "#81d4c9",
   secondary: "#618c86",
   textColor: "#585959",
+  card: "#ebeded",
 };

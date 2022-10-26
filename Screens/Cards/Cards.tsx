@@ -17,14 +17,14 @@ import { StackNavigationProp } from "@react-navigation/stack";
 interface Props {
   id: number;
   title: string;
+  body: any;
   image: { uri: string };
   onPress: any;
-  body: string;
 }
-type authScreenProp = StackNavigationProp<RootStackParamList, "CardsScreen">;
+// type authScreenProp = StackNavigationProp<RootStackParamList, "CardDetails">;
 const Cards: React.FC<Props> = ({ id, title, image, onPress, body }) => {
   //   const img = require('https://picsum.photos/200/300');
-  const navigation = useNavigation<authScreenProp>();
+  // const navigation = useNavigation<authScreenProp>();
   return (
     <TouchableWithoutFeedback onPress={onPress}>
       <View style={styles.container}>
@@ -46,7 +46,7 @@ const Cards: React.FC<Props> = ({ id, title, image, onPress, body }) => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "white",
+    backgroundColor: colors.card,
     alignItems: "center",
     marginVertical: normalize(10),
     width: "95%",
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
       height: 4,
       width: 0,
     },
-    shadowColor: colors.dark,
+    // shadowColor: colors.dark,
     shadowOpacity: 0.2,
     shadowRadius: 3,
     elevation: 5,

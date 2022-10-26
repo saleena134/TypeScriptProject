@@ -113,6 +113,8 @@ const SignUP: FC = (props) => {
       Alert.alert("error");
     }
   };
+
+  const [secure, setSecure] = React.useState(true);
   return (
     <>
       <Animated.View
@@ -155,27 +157,41 @@ const SignUP: FC = (props) => {
             />
             <Seprator screen={false} />
             <TextInput
-              //  value={email}
               placeholder={"name"}
               onChangeText={(text) => setName(text)}
-              //  onChange={(val) => setEmail(val.target.value)}
               style={styles.input}
             />
             <TextInput
-              //  value={email}
               placeholder={"email"}
               onChangeText={(text) => setEmail(text)}
-              //  onChange={(val) => setEmail(val.target.value)}
               style={styles.input}
             />
-            <TextInput
-              //  value={password}
-              placeholder={"passwrod"}
-              //  onChange={(val) => setPassword(val.target.value)}
-              onChangeText={(text) => setPassword(text)}
-              secureTextEntry={true}
-              style={styles.input}
-            />
+            <View
+              style={[
+                styles.input,
+                { flexDirection: "row", justifyContent: "space-around" },
+              ]}
+            >
+              <TextInput
+                placeholder={"passwrod"}
+                secureTextEntry={secure}
+                onChangeText={(text) => setPassword(text)}
+              />
+
+              <TouchableOpacity
+                onPress={() => setSecure(!secure)}
+                style={{ marginLeft: 200 }}
+              >
+                <Image
+                  style={{ height: 20, width: 20, alignSelf: "baseline" }}
+                  source={
+                    secure
+                      ? require("../assets/closeEye.png")
+                      : require("../assets/eye.png")
+                  }
+                />
+              </TouchableOpacity>
+            </View>
 
             <TouchableOpacity style={styles.button} onPress={signup}>
               <Text style={{ color: colors.light }}>Submit</Text>

@@ -7,6 +7,7 @@ import {
   ImageBackground,
   View,
 } from "react-native";
+import colors from "../style/colors";
 
 interface Props {
   children?: React.ReactNode;
@@ -23,6 +24,7 @@ const Screen: React.FC<Props> = ({ children, ...rest }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: colors.primary,
   },
 });
 export default Screen;

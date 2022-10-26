@@ -7,6 +7,7 @@ import colors from "../../style/colors";
 import { normalize } from "../../validation/globles";
 import { RootStackParamList } from "../RootStackPrams";
 import { useNavigation } from "@react-navigation/native";
+import Screen from "../../container/Screen";
 
 interface Props {
   route: any;
@@ -23,17 +24,19 @@ const CardDetails: React.FC<Props> = ({ route, ...props }) => {
 
   return (
     <>
-      <SafeAreaView>
-        <Header title={"Card Detail"} screen={true} />
-        <View style={styles.container}>
-          <Image style={styles.imageStyle} source={image} />
-          <View style={styles.detailsContainer}>
-            <AppText style={styles.QntyandColorText}>{id}</AppText>
-            <AppText style={styles.QntyandColorText}>{title}</AppText>
-            <AppText style={styles.QntyandColorText}>{body}</AppText>
+      <Screen>
+        <View style={{ backgroundColor: colors.light, flex: 1 }}>
+          <Header title={"Card Detail"} screen={true} />
+          <View style={styles.container}>
+            <Image style={styles.imageStyle} source={image} />
+            <View style={styles.detailsContainer}>
+              <AppText style={styles.QntyandColorText}>{id}</AppText>
+              <AppText style={styles.QntyandColorText}>{title}</AppText>
+              <AppText style={styles.QntyandColorText}>{body}</AppText>
+            </View>
           </View>
         </View>
-      </SafeAreaView>
+      </Screen>
     </>
   );
 };

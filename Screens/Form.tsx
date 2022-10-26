@@ -31,20 +31,28 @@ const Form = () => {
   const [password, setPassword] = useState("");
   const navigation = useNavigation<authScreenProp>();
   const LoginHandle = async () => {
+    const reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    // var emailValid = false;
     if (email && password) {
       try {
         const user = await firebase
           .auth()
           .signInWithEmailAndPassword(email, password);
         navigation.navigate("CardsScreen");
-        Alert.alert("User logged-in successfully!");
+        Alert.alert("User logged-in successfully!", email);
       } catch (error) {
         console.log("error is here", error);
       }
+    } else if (reg.test(email) !== true) {
+      setEmailError("Use Valid regex expression");
+      setPasswordError("Use Valid regex expression");
     } else {
-      Alert.alert("error");
+      setEmailError("");
     }
   };
+  const [secure, setSecure] = React.useState(true);
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
 
   return (
     <>
@@ -64,13 +72,45 @@ const Form = () => {
           value={email}
           onChangeText={(val) => setEmail(val)}
         />
-        <TextInput
-          placeholder={"passwrod"}
-          value={password}
-          secureTextEntry={true}
-          style={styles.input}
-          onChangeText={(val) => setPassword(val)}
-        />
+        {emailError.length > 0 && (
+          <View>
+            <Text style={{ color: "red" }}>{emailError}</Text>
+          </View>
+        )}
+        <View
+          style={[
+            styles.input,
+            { flexDirection: "row", justifyContent: "space-around" },
+          ]}
+        >
+          <TextInput
+            placeholder={"passwrod"}
+            value={password}
+            secureTextEntry={secure}
+            // style={styles.input}
+            onChangeText={(val) => setPassword(val)}
+          />
+
+          <TouchableOpacity
+            onPress={() => setSecure(!secure)}
+            style={{ marginLeft: 200 }}
+          >
+            <Image
+              style={{ height: 20, width: 20, alignSelf: "baseline" }}
+              source={
+                secure
+                  ? require("../assets/closeEye.png")
+                  : require("../assets/eye.png")
+              }
+            />
+          </TouchableOpacity>
+        </View>
+        {passwordError.length > 0 && (
+          <View>
+            <Text style={{ color: "red" }}>{passwordError}</Text>
+          </View>
+        )}
+
         <TouchableOpacity style={styles.button} onPress={LoginHandle}>
           <AppText style={{ color: colors.light }}>Submit</AppText>
         </TouchableOpacity>

@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { View, FlatList, StyleSheet } from "react-native";
+
+//Custom Component
 import Header from "../../container/Header";
 import Screen from "../../container/Screen";
 import Cards from "./Cards";
-import auth from "@react-native-firebase/auth";
+import colors from "../../style/colors";
+//Custom Component
+
 import { useNavigation } from "@react-navigation/native";
 import { RootStackParamList } from "../RootStackPrams";
 import { StackScreenProps } from "@react-navigation/stack";
@@ -20,31 +24,6 @@ interface Props {
 
 type authScreenProp = StackScreenProps<RootStackParamList, "CardDetails">;
 const CardsScreen: React.FC = ({ ...props }) => {
-  const navigation = useNavigation<authScreenProp>();
-
-  const DATA = [
-    {
-      id: "1",
-      title: "The Boys",
-    },
-    {
-      id: "2",
-      title: "The hello",
-    },
-    {
-      id: "3",
-      title: "The Boys",
-    },
-    {
-      id: "4",
-      title: "The Boys",
-    },
-    {
-      id: "5",
-      title: "The Boys",
-    },
-  ];
-
   useEffect(() => {
     fetch("https://jsonplaceholder.typicode.com/posts")
       .then((response) => response.json())
@@ -57,14 +36,13 @@ const CardsScreen: React.FC = ({ ...props }) => {
 
   const [data, setData] = React.useState<string | any>();
 
-  console.log("checking data", DATA);
-
   const image = { uri: "https://picsum.photos/200/300" };
 
+  const navigation = useNavigation<authScreenProp>();
   return (
     <Screen>
-      <Header title={"Card Screen"} screen={false} />
       <View style={styles.container}>
+        <Header title={"Card Screen"} screen={false} />
         <FlatList
           data={data}
           keyExtractor={(item, index) => "id" + index.toString()}
@@ -81,6 +59,7 @@ const CardsScreen: React.FC = ({ ...props }) => {
                   body: item.body,
                 })
               }
+              body={undefined}
             />
           )}
         />
@@ -92,6 +71,7 @@ const CardsScreen: React.FC = ({ ...props }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: colors.light,
   },
 });
 
